@@ -28,6 +28,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', ]
 # Application definition
 
 INSTALLED_APPS = [
+    'xadmin',
     'mdeditor',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -35,7 +36,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'xadmin',
     'crispy_forms',
     'reversion',
     'haystack',

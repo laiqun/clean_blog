@@ -5,7 +5,6 @@ media/social/
 # IntelliJ project files
 .idea
 .idea/workspace.xml
-migrations
 *.iml
 out
 gen### Python template

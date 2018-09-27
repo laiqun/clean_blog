@@ -3,14 +3,18 @@
 
 ###  > `FIX`
 
-+ 修改xadmin导入方式(本地包导入)
-+ static 引用方式(详见 setting)
++ ###### 修改xadmin导入方式(本地包导入)
++ ###### static 引用方式(详见 setting)
 
-### > `TODO`
+### > `Add`
 
-+ 富文本框输入 改为 MarkDown文本输入
-+ 项目部署uwsgi、nginx静态资源代理
++ ###### 富文本框输入 改为 MarkDown文本输入 
++ ###### 项目部署uwsgi、nginx静态资源代理
 
+### > `BUG`
+
++ ###### `代码高亮`
+ 
 ---
 
 一个基于Django开发的博客系统:

@@ -28,6 +28,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', ]
 # Application definition
 
 INSTALLED_APPS = [
+    'mdeditor',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,10 +39,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'reversion',
     'haystack',
-    'blog',
+    'blog.apps.BlogConfig',
     'comments',
-    'ckeditor',
-    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -82,8 +81,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'myblog',
         'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '',
+        'PASSWORD': 'im7h322000',
+        'HOST': '118.25.126.182',
         'PORT': '3306',
     }
 }
@@ -133,52 +132,6 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# 上传方式
-CKEDITOR_IMAGE_BACKEND = "pillow"
-
-# 上传到的目录
-CKEDITOR_UPLOAD_PATH = "vul_images"
-
-# 只允许上传图片
-CKEDITOR_ALLOW_NONIMAGE_FILES = True
-
-# 设置GENERATOR来指向这个函数,之后上传的文件名会以UUID来命名.
-
-CKEDITOR_FILENAME_GENERATOR = 'ckeditor_uploader.utils.generate_uuid4_filename'
-
-CKEDITOR_CONFIGS = {
-    "vul_address": {
-        'toolbar': 'full',  # full, None, Basic
-        'height': 200,
-        'width': 550,
-    },
-
-    "vul": {
-        'height': 300,
-        'width': 600,
-        'toolbar': 'Custom',
-        'toolbar_Custom': [
-            {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
-            {'name': 'yourcustomtools', 'items': [
-                # put the name of your editor.ui.addButton here
-                'Preview',
-                'Maximize',
-            ]},
-            '/',
-
-            ['Bold', 'Italic', 'Underline'],
-            {'name': 'colors', 'items': ['TextColor', 'BGColor']},
-            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-            {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
-            {'name': 'insert',
-             'items': ['Image', 'Table']},
-
-            ['Link', 'Unlink'],
-            ['RemoveFormat', 'Source'],
-        ]
-    }
-}
-
 # haystack
 HAYSTACK_CONNECTIONS = {
     'default': {
@@ -188,17 +141,3 @@ HAYSTACK_CONNECTIONS = {
 }
 HAYSTACK_SEARCH_RESULTS_PER_PAGE = 5
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
-
-#  ckeditor_uploader utils.py
-# def generate_uuid4_filename(filename):
-#     """
-#     Generates a uuid4 (random) filename, keeping file extension
-#
-#     :param filename: Filename passed in. In the general case, this will
-#                      be provided by django-ckeditor's uploader.
-#     :return: Randomized filename in urn format.
-#     :rtype: str
-#     """
-#     discard, ext = os.path.splitext(filename)
-#     basename = uuid.uuid4()
-#     return '{0}{1}'.format(basename, ext)

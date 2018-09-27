@@ -13,25 +13,25 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-import xadmin
 from django.conf.urls import url, include
-from cleanblog.settings import MEDIA_ROOT
 from django.views.static import serve
+
+import xadmin
 from blog.feed import AllPostRssFeed
+from cleanblog.settings import MEDIA_ROOT
 
 xadmin.autodiscover()
 
 from xadmin.plugins import xversion
-xversion.register_models()
 
-from ckeditor_uploader import urls as ckeditor_uploader_urls
+xversion.register_models()
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
     url(r'', include('blog.urls')),
     url(r'', include('comments.urls')),
+    url(r'mdeditor/', include('mdeditor.urls')),
     url(r'^search/', include('haystack.urls')),
-    url(r'^ckeditor/', include(ckeditor_uploader_urls)),
     url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
     url(r'^all/rss/$', AllPostRssFeed(), name='rss'),
 ]

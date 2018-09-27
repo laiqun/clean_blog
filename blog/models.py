@@ -1,7 +1,8 @@
-from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
+
+from mdeditor.fields import MDTextField
 
 
 class Category(models.Model):
@@ -31,11 +32,10 @@ class Post(models.Model):
     author = models.ForeignKey(User)
     tags = models.ManyToManyField(Tag, blank=True)
     category = models.ForeignKey(Category)
-    # content = models.TextField()
-    content = RichTextUploadingField(verbose_name='content', config_name='vul')
-
-    created_time = models.DateTimeField()
-    summary = models.CharField(max_length=200)
+    content = MDTextField(verbose_name='正文')
+    modify_time = models.DateTimeField(auto_now=True, verbose_name='修改时间')
+    created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
+    summary = models.CharField(max_length=200, verbose_name='概要')
 
     def __str__(self):
         return self.title

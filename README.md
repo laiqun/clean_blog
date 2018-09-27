@@ -91,7 +91,4 @@ python manage.py createsuperuser
 
 ![index](/pic/1.png)
 
-### 图片上传
-
-![index](/pic/9.png)
 

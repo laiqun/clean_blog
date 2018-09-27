@@ -1,4 +1,9 @@
 # Clean Blog
+---
+###  -> fix
++ 修改xadmin导入方式(本地包导入)
++ static 引用方式(详见 setting)
+---
 
 一个基于Django开发的博客系统:
 

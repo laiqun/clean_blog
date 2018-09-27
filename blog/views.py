@@ -25,7 +25,6 @@ class ArchivesView(IndexView):
         return super(ArchivesView, self).get_queryset().filter(created_time__year=year,
                                                                created_time__month=month)
 
-
     def get_context_data(self, **kwargs):
         context = super(ArchivesView, self).get_context_data(**kwargs)
         title = '{} 年 {} 月'.format(self.kwargs.get('year'), self.kwargs.get('month'))
@@ -75,5 +74,3 @@ class PostView(DetailView):
             'comment_list': comment_list,
         })
         return context
-
-

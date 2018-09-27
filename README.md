@@ -32,7 +32,14 @@ Usage:
 <pre>
 git clone git@github.com:wzyonggege/clean_blog.git
 virtualenv --python=<py3path> venv
+pip install -r requirements.txt
 . venv/bin/activate
+</pre>
+
+- 收集静态资源
+
+<pre>
+python manage.py collectstatic
 </pre>
 
 - 数据库迁移

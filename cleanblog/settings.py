@@ -15,7 +15,6 @@ import os, uuid
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
@@ -25,7 +24,6 @@ SECRET_KEY = '_m9c!59*^eq8dpi9ntu$c0m32o4sgkaiu2ed$r@3^cftk@cbhs'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost ', ]
-
 
 # Application definition
 
@@ -76,7 +74,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'cleanblog.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
@@ -86,11 +83,10 @@ DATABASES = {
         'NAME': 'myblog',
         'USER': 'root',
         'PASSWORD': '',
-        'HOST': 'localhost',
+        'HOST': '',
         'PORT': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -110,7 +106,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
@@ -124,22 +119,21 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-
+# 用于定义 collect static 所有static静态文件存放目录 项目启动时调用的是这里的文件  所以每次修改了 static 文件 就得 运行 collectstatic命令
+STATIC_ROOT = 'web_static'
+# 用于定义 static 静态文件存放目录
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, 'static/'),
 )
-
 # 设置媒体文件目录
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-#上传方式
+# 上传方式
 CKEDITOR_IMAGE_BACKEND = "pillow"
 
 # 上传到的目录
@@ -154,7 +148,7 @@ CKEDITOR_FILENAME_GENERATOR = 'ckeditor_uploader.utils.generate_uuid4_filename'
 
 CKEDITOR_CONFIGS = {
     "vul_address": {
-        'toolbar': 'full', # full, None, Basic
+        'toolbar': 'full',  # full, None, Basic
         'height': 200,
         'width': 550,
     },
@@ -185,7 +179,6 @@ CKEDITOR_CONFIGS = {
     }
 }
 
-
 # haystack
 HAYSTACK_CONNECTIONS = {
     'default': {
@@ -209,5 +202,3 @@ HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 #     discard, ext = os.path.splitext(filename)
 #     basename = uuid.uuid4()
 #     return '{0}{1}'.format(basename, ext)
-
-

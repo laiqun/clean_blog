@@ -2,6 +2,7 @@ from django.contrib.syndication.views import Feed
 
 from .models import Post
 
+
 class AllPostRssFeed(Feed):
     title = "Clean Blog"
 

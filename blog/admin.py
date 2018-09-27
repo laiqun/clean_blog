@@ -8,6 +8,7 @@ class GlobalSetting(object):
     site_title = 'clean blog v.1.0'
     site_footer = 'my blog'
 
+
 xadmin.site.register(views.CommAdminView, GlobalSetting)
 
 
@@ -16,8 +17,7 @@ class PostAdmin(object):
     style_fields = {"content": "ueditor"}
 
 
-#注册到后台
+# 注册到后台
 xadmin.site.register(Post, PostAdmin)
 xadmin.site.register(Category)
 xadmin.site.register(Tag)
-

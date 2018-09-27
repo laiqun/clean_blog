@@ -1,5 +1,5 @@
 from django import forms
-from .models import Comment
+
 
 class CommentForm(forms.Form):
     name = forms.CharField(
@@ -13,6 +13,6 @@ class CommentForm(forms.Form):
     content = forms.CharField(
         label='Comment',
         widget=forms.TextInput(attrs={'class': 'form-control',
-                                     'placeholder': 'Content',
-                                     'row': 3})
+                                      'placeholder': 'Content',
+                                      'row': 3})
     )

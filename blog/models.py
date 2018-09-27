@@ -1,13 +1,15 @@
-from django.db import models
-from django.contrib.auth.models import User
-from django.urls import reverse
-
-from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.contrib.auth.models import User
+from django.db import models
+from django.urls import reverse
 
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name = '文章分类'
+        verbose_name_plural = verbose_name
 
     def __str__(self):
         return self.name
@@ -15,6 +17,10 @@ class Category(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name = '文章标签'
+        verbose_name_plural = verbose_name
 
     def __str__(self):
         return self.name
@@ -39,3 +45,5 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-created_time']
+        verbose_name = '文章'
+        verbose_name_plural = verbose_name

@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% block css %}
     <link rel="stylesheet" href="{% static 'md_static/css/editormd.preview.css' %}"/>
+{#    <link rel="stylesheet" href="{% static 'md_static/css/style.css' %}"/>#}
 {% endblock %}
 {% block nav %}
     <ul class="navbar-nav ml-auto">
@@ -36,41 +37,8 @@
         <br>
         <br>
         <br>
-        {% block jquery %}
-            <script src="{% static 'md_static/js/jquery.min.js' %}"></script>
-        {% endblock %}
-        <script src="{% static 'md_static/js/lib/marked.min.js' %}"></script>
-        <script src="{% static 'md_static/js/lib/prettify.min.js' %}"></script>
-        <script src="{% static 'md_static/js/lib/raphael.min.js' %}"></script>
-        <script src="{% static 'md_static/js/lib/underscore.min.js' %}"></script>
-        <script src="{% static 'md_static/js/lib/sequence-diagram.min.js' %}"></script>
-        <script src="{% static 'md_static/js/lib/flowchart.min.js' %}"></script>
-        <script src="{% static 'md_static/js/lib/jquery.flowchart.min.js' %}"></script>
-        {#    <script src="{% static 'assets/3rd/gitment.browser.js' %}"></script>#}
-        <script src="{% static 'md_static/js/editormd.js' %}"></script>
-        <script type="text/javascript">
-            $(function () {
-                var testEditormdView, testEditormdView2;
 
-                testEditormdView = editormd.markdownToHTML("test-editormd-view", {
-                    markdown: $("#append-test").text(),
-                    //htmlDecode      : true,       // 开启 HTML 标签解析，为了安全性，默认不开启
-                    htmlDecode: "style,script,iframe",  // you can filter tags decode
-                    //toc             : false,
-                    tocm: true,    // Using [TOCM]
-                    //tocContainer    : "#custom-toc-container", // 自定义 ToC 容器层
-                    //gfm             : false,
-                    //tocDropdown     : true,
-                    // markdownSourceCode : true, // 是否保留 Markdown 源码，即是否删除保存源码的 Textarea 标签
-                    emoji: true,
-                    taskList: true,
-                    tex: true,  // 默认不解析
-                    flowChart: true,  // 默认不解析
-                    sequenceDiagram: true,  // 默认不解析
 
-                });
-            });
-        </script>
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -135,3 +103,37 @@
         {% endfor %}
     </div>
 {% endblock main %}
+{% block script %}
+    <script src="{% static 'md_static/js/jquery.min.js' %}"></script>
+    <script src="{% static 'md_static/js/lib/marked.min.js' %}"></script>
+    <script src="{% static 'md_static/js/lib/prettify.min.js' %}"></script>
+    <script src="{% static 'md_static/js/lib/raphael.min.js' %}"></script>
+    <script src="{% static 'md_static/js/lib/underscore.min.js' %}"></script>
+    <script src="{% static 'md_static/js/lib/sequence-diagram.min.js' %}"></script>
+    <script src="{% static 'md_static/js/lib/flowchart.min.js' %}"></script>
+    <script src="{% static 'md_static/js/lib/jquery.flowchart.min.js' %}"></script>
+    <script src="{% static 'md_static/js/editormd.js' %}"></script>
+    <script type="text/javascript">
+        $(function () {
+            var testEditormdView, testEditormdView2;
+
+            testEditormdView = editormd.markdownToHTML("test-editormd-view", {
+                markdown: $("#append-test").text(),
+                //htmlDecode      : true,       // 开启 HTML 标签解析，为了安全性，默认不开启
+                htmlDecode: "style,script,iframe",  // you can filter tags decode
+                //toc             : false,
+                tocm: true,    // Using [TOCM]
+                //tocContainer    : "#custom-toc-container", // 自定义 ToC 容器层
+                //gfm             : false,
+                //tocDropdown     : true,
+                // markdownSourceCode : true, // 是否保留 Markdown 源码，即是否删除保存源码的 Textarea 标签
+                emoji: true,
+                taskList: true,
+                tex: true,  // 默认不解析
+                flowChart: true,  // 默认不解析
+                sequenceDiagram: true,  // 默认不解析
+
+            });
+        });
+    </script>
+{% endblock %}

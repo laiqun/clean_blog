@@ -127,3 +127,4 @@ class PersonAdmin(admin.ModelAdmin):
     # short_description functions like a model field's verbose_name
     address_report.short_description = "Address"
   ```
+  ### 发现markdown全屏编辑状态还会显示其他amdin控件的bug，需要调整前端

@@ -16,7 +16,7 @@
 + ###### `代码高亮`
 + ###### 可能客户端 archive界面 显示不了那个月的文章，是因为mysql时区的设置问题 可以在 cmd 中
 + ######    cmd 输入 mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -uroot mysql -p 输入密码就可以了
-   - ###### 详见[Heading link](https://chowyi.com/Django%E4%BD%BF%E7%94%A8MySQL%E5%90%8E%E7%AB%AF%E6%97%A5%E6%9C%9F%E4%B8%8D%E8%83%BD%E6%8C%89%E6%9C%88%E8%BF%87%E6%BB%A4%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/ "Heading link")
+   - ###### 详见[Django使用MySQL后端日期不能按月过滤的问题及解决方案](https://chowyi.com/Django%E4%BD%BF%E7%94%A8MySQL%E5%90%8E%E7%AB%AF%E6%97%A5%E6%9C%9F%E4%B8%8D%E8%83%BD%E6%8C%89%E6%9C%88%E8%BF%87%E6%BB%A4%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/ "Heading link")
    
 ### > `Attaction`
 
@@ -128,3 +128,18 @@ class PersonAdmin(admin.ModelAdmin):
     address_report.short_description = "Address"
   ```
   ### 发现markdown全屏编辑状态还会显示其他amdin控件的bug，需要调整前端
+  
+  ## 多用户发表文章的支持
+  1. 添加新用户，在admin页面设置该用户的职员状态开关为开
+  2. 给他/她"增加文章"的权限
+  3. 如果想要只能编辑自己发表的文章，可以
+  ```python
+  class MyModelAdmin(admin.ModelAdmin):
+    def get_queryset(self, request):
+        qs = super(MyModelAdmin, self).get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        else:
+            return qs.filter(author=request.user)
+  ```
+[自强学堂-django 后台](https://code.ziqiangxuetang.com/django/django-admin.html)

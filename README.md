@@ -44,8 +44,8 @@ Usage:
 <pre>
 git clone https://github.com/helloworld19951213/clean_blog.git
 virtualenv --python=<py3path> venv
-pip install -r requirements.txt
 . venv/bin/activate
+pip install -r requirements.txt
 </pre>
 
 - 收集静态资源
@@ -91,4 +91,39 @@ python manage.py createsuperuser
 
 ![index](/pic/1.png)
 
+### 相关文档
+使用haystack这个搜索引擎时，需要多一步操作：
 
+初始化索引数据 python manage.py rebuild_index
+使用haystack搜索框架和whoosh后端引擎的博文见：
+
+https://www.cnblogs.com/alexzhang92/p/9529689.html
+
+使用的Blog模板为startbootrap上找到的：
+
+https://startbootstrap.com/template-categories/blogs/
+
+添加文章的后端显示真的很丑，特别是Author这个字段的值显示为 创建时间和修改时间的显示为Null,这种显示非常不友好。
+
+参照下文来修改： https://docs.djangoproject.com/en/1.11/ref/contrib/admin/#django.contrib.admin.ModelAdmin.readonly_fields
+```python
+from django.contrib import admin
+from django.utils.html import format_html_join
+from django.utils.safestring import mark_safe
+
+class PersonAdmin(admin.ModelAdmin):
+    readonly_fields = ('address_report',)
+
+    def address_report(self, instance):
+        # assuming get_full_address() returns a list of strings
+        # for each line of the address and you want to separate each
+        # line by a linebreak
+        return format_html_join(
+            mark_safe('<br>'),
+            '{}',
+            ((line,) for line in instance.get_full_address()),
+        ) or mark_safe("<span class='errors'>I can't determine this address.</span>")
+
+    # short_description functions like a model field's verbose_name
+    address_report.short_description = "Address"
+  ```

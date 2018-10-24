@@ -132,7 +132,7 @@ class PersonAdmin(admin.ModelAdmin):
   ## 多用户发表文章的支持
   1. 添加新用户，在admin页面设置该用户的职员状态开关为开
   2. 给他/她"增加文章"的权限
-  3. 如果想要只能编辑自己发表的文章，可以
+  3. 如果想要只能编辑自己发表的文章，控制admin只显示该用户的文章；还可以使用django guardian，重写save_model方法，在存储之前给它加上修改权限，修改的时候，check权限。
   ```python
   class MyModelAdmin(admin.ModelAdmin):
     def get_queryset(self, request):

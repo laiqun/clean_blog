@@ -127,7 +127,7 @@ class PersonAdmin(admin.ModelAdmin):
     # short_description functions like a model field's verbose_name
     address_report.short_description = "Address"
   ```
-  ### 发现markdown全屏编辑状态还会显示其他amdin控件的bug，需要调整前端
+  ### <s>发现markdown全屏编辑状态还会显示其他amdin控件的bug，需要调整前端</s>已修复
   
   ## 多用户发表文章的支持
   1. 添加新用户，在admin页面设置该用户的职员状态开关为开

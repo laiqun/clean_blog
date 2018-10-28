@@ -137,9 +137,13 @@ class PersonAdmin(admin.ModelAdmin):
   class MyModelAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         qs = super(MyModelAdmin, self).get_queryset(request)
-        if request.user.is_superuser:
+        if request.user.is_superuser:#超级用户可以获得全部文章
             return qs
         else:
-            return qs.filter(author=request.user)
+            return qs.filter(author=request.user)#只显示自己发布的问
+    #def savemodel()
+    # 在文章保存的时候，我们可以判断，如果作者是空，说明是新建；
+    # 如果有作者，说明是修改，那么作者与当前登录者不同，那就拒绝存储。
+    # 超级用户可以编辑所有人的文章
   ```
 [自强学堂-django 后台](https://code.ziqiangxuetang.com/django/django-admin.html)

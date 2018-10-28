@@ -132,7 +132,9 @@ class PersonAdmin(admin.ModelAdmin):
   ## 多用户发表文章的支持
   1. 添加新用户，在admin页面设置该用户的职员状态开关为开
   2. 给他/她"增加文章"的权限
-  3. 如果想要只能编辑自己发表的文章，控制admin只显示该用户的文章；还可以使用django guardian，重写save_model方法，在存储之前给它加上修改权限，修改的时候，check权限。有关django admin页面的定制，可以看[django admin cookbook](https://media.readthedocs.org/pdf/django-admin-cookbook/latest/django-admin-cookbook.pdf)
+  3. 如果想要只能编辑、删除自己发表的文章，控制admin只显示该用户的文章；可以使用get_queryset [自强学堂-django 后台]
+  (https://code.ziqiangxuetang.com/django/django-admin.html)
+  
   ```python
   class MyModelAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
@@ -146,4 +148,8 @@ class PersonAdmin(admin.ModelAdmin):
     # 如果有作者，说明是修改，那么作者与当前登录者不同，那就拒绝存储。
     # 超级用户可以编辑所有人的文章
   ```
-[自强学堂-django 后台](https://code.ziqiangxuetang.com/django/django-admin.html)
+  
+  4. <s>还可以使用django guardian，重写save_model方法，在存储之前给它加上修改权限，修改的时候，check权限。</s>经过验证只用第三条给出的方法就可以了，在修改和删除的时候，都要做一次get_query_set，如果是别人的文章，根本找不到。
+  5. 有关django admin页面的定制，可以看[django admin cookbook](https://media.readthedocs.org/pdf/django-admin-cookbook/latest/django-admin-cookbook.pdf)
+
+

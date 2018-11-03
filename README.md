@@ -44,8 +44,9 @@ Usage:
 <pre>
 git clone https://github.com/helloworld19951213/clean_blog.git
 virtualenv --python=<py3path> venv
-pip install -r requirements.txt
 . venv/bin/activate
+pip install -r requirements.txt
+
 </pre>
 
 - 收集静态资源
